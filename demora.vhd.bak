@@ -1,0 +1,15 @@
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity Demora is
+	port(pulso: in std_logic;
+			salida:out std_logic)
+end entity Demora;
+
+architecture Ejemplo of Demora is
+begin
+process(pulso)
+			begin   
+			if pulso='1' then 
+				salida <= '0', '1' after 100 ns;
+end architecture Ejemplo; -- Entity: Demora

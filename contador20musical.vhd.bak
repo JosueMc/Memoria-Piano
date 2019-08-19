@@ -1,0 +1,33 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+USE IEEE.STD_LOGIC_ARITH.all;
+USE IEEE.STD_LOGIC_UNSIGNED.all;
+
+ENTITY contador20musical IS-- sirve para seleccionar la cancion aleatoria
+	PORT(clock,enable,reset : IN STD_LOGIC;
+			salida: out std_logic_vector(6 downto 0);
+			q0,q1,q2,q3,q4,q5,q6,q7,q8,q9: in std_logic_vector(6 downto 0)
+		 Q : buffer STD_LOGIC_VECTOR (4 downto 0));
+END contador20musical;
+
+ARCHITECTURE sol OF contador20musical IS
+BEGIN
+
+	
+	PROCESS(clock,reset)
+	BEGIN
+		if reset='0' then Q<="00000";
+  		elsif (clock'event and clock='1') then
+			if enable='1' then
+				if (Q="10011") then Q<="00000";
+				elsif (Q="00000")then salida<=q0;elsif (Q="00001")then salida<=q0;
+				elsif (Q="00010")then salida<=q0;elsif (Q="00011")then salida<=q0;
+				elsif (Q="00100")then salida<=q0;elsif (Q="00101")then salida<=q0;
+				elsif (Q="00110")then salida<=q0;elsif (Q="00111")then salida<=q0;
+				elsif (Q="01000")then salida<=q0;elsif (Q="01001")then salida<=q0;
+				else Q<=Q+1;
+				end if;
+			end if;
+		end if;
+	END PROCESS;
+END sol;

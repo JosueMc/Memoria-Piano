@@ -1,0 +1,66 @@
+--MSS 
+
+LIBRARY IEEE;
+USE  IEEE.STD_LOGIC_1164.all;
+USE  IEEE.STD_LOGIC_UNSIGNED.all;
+
+entity MSS is
+	port	(	clock, resetn, start,test,consulta,gano,fin,cambioconsulta: in std_logic;
+				ledverde,matrix: out std_logic;
+				reset_todo, resettest,resetconsulta: out std_logic);
+end MSS;
+
+
+architecture sol of MSS is
+type estado is (ta, tb, tc, td, te, tf, tg, th, ti,);
+signal y: estado;
+begin
+MSS_transiciones:process(resetn,clock)
+	begin
+		if (resetn='0') then y<=ta;
+		elsif(clock'event and clock='1') then
+			case y is
+					when ta =>if start='1' then y<=tb;
+										else y<=ta;end if;
+						when tb =>if start='0' then y<=tc;
+										else y<=tb;end if;
+						when tc=> y<=td;
+						when td=> if test='1' then y<=te;
+										elsif consulta='1' then y<=tp;
+										else y<=td;end if;
+						when te=> y<=tf;
+						when tf=> if error='1' then y<=tg;
+										elsif gano='1' then y<=tg;
+										elsif fin='1' then te;
+										else y<=tf;end if;
+						when tg=> y<=tc;
+						when tp=> if cambioconsulta='1'then y<=tq;
+										else y<=tp;end if;
+						when tq=> if salirconsulta='1' then y<=tr;
+										else y=>tp;end if;
+						when tr=> y=>tc;
+			end case;
+		end if;
+end process;
+
+
+MSS_salidas: process (y)
+		begin
+			 reset_todo<='1';resettest<='1';resetconsulta<='1';matrix<='0';ledverde<='0';
+			case y is 
+					when ta =>
+					when tb => reset_todo<='0';
+					when tc =>
+					when td => resettest<='0';resetconsulta<='0';
+					when te => matrix<='1';
+					when tf => matrix<='1';
+									if gano='1' then ledverde<='1';
+									elsif fin='1' then ledverde<='1';end if;
+					when tg => matrix<='1';
+					when tp =>
+					when tq =>
+					when tr =>
+					
+			end case;
+end process;
+end sol;		

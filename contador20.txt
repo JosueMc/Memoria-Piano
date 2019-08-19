@@ -1,0 +1,27 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+USE IEEE.STD_LOGIC_ARITH.all;
+USE IEEE.STD_LOGIC_UNSIGNED.all;
+
+ENTITY contador20 IS
+	PORT(clock,enable,reset : IN STD_LOGIC;
+		 hold : OUT STD_LOGIC;
+		 Q : out STD_LOGIC_VECTOR (4 downto 0));
+END contador20;
+
+ARCHITECTURE sol OF contador20 IS
+signal numero: std_logic_VECTOR(4 DOWNTO 0);
+BEGIN
+
+	PROCESS(clock,reset)
+	BEGIN
+		if reset='0' then numero<="00000";
+  		elsif (clock'event and clock='1') then
+			numero<=numero+1
+			if (nummero="10100") then numero<="00000";
+
+		elsif (hold='1') then Q<=numero;
+		end if;
+
+	END PROCESS;
+END sol;

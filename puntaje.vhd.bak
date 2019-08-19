@@ -1,0 +1,27 @@
+LIBRARY IEEE;
+USE  IEEE.STD_LOGIC_1164.all;
+USE  IEEE.STD_LOGIC_UNSIGNED.all;
+
+ENTITY puntaje IS
+	PORT(clock,enable,reset: IN STD_LOGIC;
+			error,ganocancion: out std_logic;
+			final: buffer std_logic_vector(4 downto 0);
+end puntaje;
+
+
+ARCHITECTURE sol OF puntaje IS
+
+BEGIN
+
+	PROCESS(clock,reset)
+	BEGIN
+		if reset='0' then final<="00000";error<='0';ganocancion<='0';
+		elsif (clock'event and clock='1') then
+			if enable='1' then
+					if error='1' then final<=final-1;
+					elsif gano='1' then final<=final+3;
+					end if;
+			end if;
+		end if;
+	end process;
+end sol;

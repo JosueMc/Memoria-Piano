@@ -1,0 +1,60 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.all;
+USE IEEE.STD_LOGIC_ARITH.all;
+USE IEEE.STD_LOGIC_UNSIGNED.all;
+
+ENTITY notasmusicales IS
+    PORT(nota: in STD_LOGIC_VECTOR(6 DOWNTO 0);
+			clock1m, enable: in STD_LOGIC;
+			salida: out STD_LOGIC);
+end notasmusicales;
+architecture sol of notasmusicales is
+signal suma: std_logic_vector(11 downto 0);
+signal buf: std_logic;
+begin
+	PROCESS(clock,reset)
+		BEGIN
+		if reset='0' then salida<= '0';suma<='0';buf<='0';
+		elsif (clock100k'event and clock100k='1') then
+				if(enable='1') then 
+					suma<=suma + 1;
+					if (nota="0000001") and (suma="11101111000") and (buf='0')then--subida de do, 1912
+						salida<='1';buf<='1';suma<=0;
+					elsif (nota="0000001") and (suma="11101111000") and (buf='1')then--bajada de do,1912
+						salida<='0';buf<='0';suma<=0;
+						
+					elsif (nota="0000010") and (suma="11010100111") and (buf='0')then--subida de re, 1703
+						salida<='1';buf<='1';suma<=0;
+					elsif (nota="0000010") and (suma="11010100111") and (buf='1')then--bajada de re, 1703
+						salida<='0';buf<='0';suma<=0;
+					
+					elsif (nota="0000100") and (suma="10111101101") and (buf='0')then--subida de mi, 1517
+						salida<='1';buf<='1';suma<=0;
+					elsif (nota="0000100") and (suma="10111101101") and (buf='1')then--bajada de mi, 1517
+						salida<='0';buf<='0';suma<=0;
+						
+					elsif (nota="0001000") and (suma="10110011000") and (buf='0')then--subida de fa, 1432
+						salida<='1';buf<='1';suma<=0;
+					elsif (nota="0001000") and (suma="10110011000") and (buf='1')then--bajada de fa, 1432
+						salida<='0';buf<='0';suma<=0;
+					
+					elsif (nota="0010000") and (suma="10011111011") and (buf='0')then--subida de sol, 1275
+						salida<='1';buf<='1';suma<=0;
+					elsif (nota="0010000") and (suma="10011111011") and (buf='1')then--bajada de sol, 1275
+						salida<='0';buf<='0';suma<=0;
+						
+					elsif (nota="0100000") and (suma="10001110000") and (buf='0')then--subida de la, 1136
+						salida<='1';buf<='1';suma<=0;
+					elsif (nota="0100000") and (suma="10001110000") and (buf='1')then--bajada de la, 1136
+						salida<='0';buf<='0';suma<=0;
+					
+					elsif (nota="1000000") and (suma="01111110100") and (buf='0')then--subida de si, 1012
+						salida<='1';buf<='1';suma<=0;
+					elsif (nota="1000000") and (suma="01111110100") and (buf='1')then--bajada de si, 1012
+						salida<='0';buf<='0';suma<=0;end if;
+				end if;
+		end if;
+	end process;
+end sol;
+
+					

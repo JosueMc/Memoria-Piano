@@ -1,0 +1,44 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+
+entity memoria is
+	port(data: in std_logic_vector(4 downto 0);
+	add: in std_logic_vector(3 downto 0);
+	modo,clock,reset: in std_logic;
+	q: out std_logic_vector(4 downto 0));
+end memoria;
+architecture sol of memoria is
+signal r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,cualquiera: std_logic_vector(4 downto 0);
+begin
+	PROCESS(clock,reset)
+		BEGIN
+			if reset='0' then Q<="00000";r0<="00000";r1<="00000";r2<="00000";r3<="00000";
+						r4<="00000";r5<="00000";r6<="00000";r7<="00000";r8<="00000";r9<="00000";
+			elsif (clock'event and clock='1') then
+					if modo='1' then--escritura
+						if (data>=r0) then r0<=data;
+						elsif (data>=r1) then r1<=data;
+						elsif (data>=r2) then r2<=data;
+						elsif (data>=r3) then r3<=data;
+						elsif (data>=r4) then r4<=data;
+						elsif (data>=r5) then r5<=data;
+						elsif (data>=r6) then r6<=data;
+						elsif (data>=r7) then r7<=data;
+						elsif (data>=r8) then r8<=data;
+						elsif (data>=r9) then r9<=data;end if;
+					else 
+						if (add="0000") then q<=r0;
+						elsif (add="0001") then q<=r1;
+						elsif (add="0010") then q<=r2;
+						elsif (add="0011") then q<=r3;
+						elsif (add="0100") then q<=r4;
+						elsif (add="0101") then q<=r5;
+						elsif (add="0110") then q<=r6;
+						elsif (add="0111") then q<=r7;
+						elsif (add="1000") then q<=r8;
+						elsif (add="1001") then q<=r9;end if;end if;
+	end process;
+end sol;
+						
+						

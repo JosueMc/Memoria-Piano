@@ -1,0 +1,807 @@
+/*<simulation_settings>
+<ftestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off musica -c musica --vector_source="C:/Users/david/Desktop/musica/notasmusicales.vwf" --testbench_file="C:/Users/david/Desktop/musica/simulation/qsim/notasmusicales.vwf.vht"</ftestbench_cmd>
+<ttestbench_cmd>quartus_eda --gen_testbench --tool=modelsim_oem --format=vhdl --write_settings_files=off musica -c musica --vector_source="C:/Users/david/Desktop/musica/notasmusicales.vwf" --testbench_file="C:/Users/david/Desktop/musica/simulation/qsim/notasmusicales.vwf.vht"</ttestbench_cmd>
+<fnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=on --flatten_buses=off --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/david/Desktop/musica/simulation/qsim/" musica -c musica</fnetlist_cmd>
+<tnetlist_cmd>quartus_eda --write_settings_files=off --simulation --functional=off --flatten_buses=off --timescale=1ps --tool=modelsim_oem --format=vhdl --output_directory="C:/Users/david/Desktop/musica/simulation/qsim/" musica -c musica</tnetlist_cmd>
+<modelsim_script>onerror {exit -code 1}
+vlib work
+vcom -work work musica.vho
+vcom -work work notasmusicales.vwf.vht
+vsim -novopt -c -t 1ps -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.notasmusicales_vhd_vec_tst
+vcd file -direction musica.msim.vcd
+vcd add -internal notasmusicales_vhd_vec_tst/*
+vcd add -internal notasmusicales_vhd_vec_tst/i1/*
+proc simTimestamp {} {
+    echo "Simulation time: $::now ps"
+    if { [string equal running [runStatus]] } {
+        after 2500 simTimestamp
+    }
+}
+after 2500 simTimestamp
+run -all
+quit -f
+</modelsim_script>
+<modelsim_script_timing>onerror {exit -code 1}
+vlib work
+vcom -work work musica.vho
+vcom -work work notasmusicales.vwf.vht
+vsim -novopt -c -t 1ps -sdfmax notasmusicales_vhd_vec_tst/i1=musica_vhd.sdo -L cycloneive -L altera -L altera_mf -L 220model -L sgate -L altera_lnsim work.notasmusicales_vhd_vec_tst
+vcd file -direction musica.msim.vcd
+vcd add -internal notasmusicales_vhd_vec_tst/*
+vcd add -internal notasmusicales_vhd_vec_tst/i1/*
+proc simTimestamp {} {
+    echo "Simulation time: $::now ps"
+    if { [string equal running [runStatus]] } {
+        after 2500 simTimestamp
+    }
+}
+after 2500 simTimestamp
+run -all
+quit -f
+</modelsim_script_timing>
+<hdl_lang>vhdl</hdl_lang>
+</simulation_settings>*/
+/*
+WARNING: Do NOT edit the input and output ports in this file in a text
+editor if you plan to continue editing the block that represents it in
+the Block Editor! File corruption is VERY likely to occur.
+*/
+
+/*
+Copyright (C) 2017  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Intel and sold by Intel or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+*/
+
+HEADER
+{
+	VERSION = 1;
+	TIME_UNIT = ns;
+	DATA_OFFSET = 0.0;
+	DATA_DURATION = 100000.0;
+	SIMULATION_TIME = 0.0;
+	GRID_PHASE = 0.0;
+	GRID_PERIOD = 10.0;
+	GRID_DUTY_CYCLE = 50;
+}
+
+SIGNAL("clock1MHz")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("enable")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("nota")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 7;
+	LSB_INDEX = 0;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("nota[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "nota";
+}
+
+SIGNAL("nota[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "nota";
+}
+
+SIGNAL("nota[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "nota";
+}
+
+SIGNAL("nota[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "nota";
+}
+
+SIGNAL("nota[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "nota";
+}
+
+SIGNAL("nota[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "nota";
+}
+
+SIGNAL("nota[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "nota";
+}
+
+SIGNAL("reset")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = INPUT;
+	PARENT = "";
+}
+
+SIGNAL("salida")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = OUTPUT;
+	PARENT = "";
+}
+
+SIGNAL("suma")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = BUS;
+	WIDTH = 12;
+	LSB_INDEX = 0;
+	DIRECTION = REGISTERED;
+	PARENT = "";
+}
+
+SIGNAL("suma[11]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[10]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[9]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[8]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[7]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[6]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[5]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[4]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[3]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[2]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[1]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+SIGNAL("suma[0]")
+{
+	VALUE_TYPE = NINE_LEVEL_BIT;
+	SIGNAL_TYPE = SINGLE_BIT;
+	WIDTH = 1;
+	LSB_INDEX = -1;
+	DIRECTION = REGISTERED;
+	PARENT = "suma";
+}
+
+TRANSITION_LIST("clock1MHz")
+{
+	NODE
+	{
+		REPEAT = 1;
+		NODE
+		{
+			REPEAT = 5000;
+			LEVEL 0 FOR 10.0;
+			LEVEL 1 FOR 10.0;
+		}
+	}
+}
+
+TRANSITION_LIST("enable")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("nota[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("nota[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("nota[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("nota[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("nota[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("nota[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 0 FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("nota[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 100000.0;
+	}
+}
+
+TRANSITION_LIST("reset")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL 1 FOR 1280.0;
+		LEVEL 0 FOR 1920.0;
+		LEVEL 1 FOR 96800.0;
+	}
+}
+
+TRANSITION_LIST("salida")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL X FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[11]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[10]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[9]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[8]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[7]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[6]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[5]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[4]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[3]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[2]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[1]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+TRANSITION_LIST("suma[0]")
+{
+	NODE
+	{
+		REPEAT = 1;
+		LEVEL U FOR 999.0;
+		LEVEL 0 FOR 99001.0;
+	}
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "clock1MHz";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 0;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "enable";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 1;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nota";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 2;
+	TREE_LEVEL = 0;
+	CHILDREN = 3, 4, 5, 6, 7, 8, 9;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nota[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 3;
+	TREE_LEVEL = 1;
+	PARENT = 2;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nota[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 4;
+	TREE_LEVEL = 1;
+	PARENT = 2;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nota[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 5;
+	TREE_LEVEL = 1;
+	PARENT = 2;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nota[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 6;
+	TREE_LEVEL = 1;
+	PARENT = 2;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nota[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 7;
+	TREE_LEVEL = 1;
+	PARENT = 2;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nota[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 8;
+	TREE_LEVEL = 1;
+	PARENT = 2;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "nota[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 9;
+	TREE_LEVEL = 1;
+	PARENT = 2;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "reset";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 10;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "salida";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Unsigned;
+	TREE_INDEX = 11;
+	TREE_LEVEL = 0;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 12;
+	TREE_LEVEL = 0;
+	CHILDREN = 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[11]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 13;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[10]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 14;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[9]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 15;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[8]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 16;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[7]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 17;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[6]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 18;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[5]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 19;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[4]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 20;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[3]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 21;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[2]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 22;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[1]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 23;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+DISPLAY_LINE
+{
+	CHANNEL = "suma[0]";
+	EXPAND_STATUS = COLLAPSED;
+	RADIX = Binary;
+	TREE_INDEX = 24;
+	TREE_LEVEL = 1;
+	PARENT = 12;
+}
+
+TIME_BAR
+{
+	TIME = 0;
+	MASTER = TRUE;
+}
+;

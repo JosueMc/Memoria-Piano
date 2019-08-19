@@ -1,0 +1,109 @@
+LIBRARY IEEE;
+USE  IEEE.STD_LOGIC_1164.all;
+USE  IEEE.STD_LOGIC_UNSIGNED.all;
+
+ENTITY comparador IS
+	PORT(clock,enable,reset: IN STD_LOGIC;
+			notain: in STD_LOGIC_VECTOR (4 downto 0);
+			n0,n1,n2,n3,n4,n5,n6,n7,n8,n9: in STD_LOGIC_VECTOR (4 downto 0);
+			n10,n11,n12,n13,n14,n15,n16,n17,n18,n19: in STD_LOGIC_VECTOR (4 downto 0);
+		 conteo : Buffer STD_LOGIC_VECTOR (1 downto 0);--conteo de errores
+		 error,gano,menos1 : out STD_LOGIC);-- error se activa al 3 intento, menos 1 x cada fallo, gano se activa al finalizar la melodia
+END comparador;
+
+ARCHITECTURE sol OF comparador IS
+signal cuenta: std_logic_vector(4 downto o);
+BEGIN
+
+	PROCESS(clock,reset)
+	BEGIN
+		if reset='0' then cuenta<="00000";conteo<='0';error<='0';menos1<='0';
+  		elsif (clock'event and clock='1') then
+			if enable='1' then
+				if conteo="11" then error <='1';
+			
+				elsif (cuenta="00000") then
+					if notain = n0 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;menos1<='1';end if;
+					
+				elsif (cuenta="00001") then
+					if notain = n1 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;menos1<='1';end if;
+					
+				elsif (cuenta="00010") then
+					if notain = n2 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="00011") then
+					if notain = n3 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="00100") then
+					if notain = n4 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="00101") then
+					if notain = n5 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+					
+				elsif (cuenta="00110") then
+					if notain = n6 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="00111") then
+					if notain = n7 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="01000") then
+					if notain = n8 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+					
+				elsif (cuenta="01001") then
+					if notain = n9 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+					
+				elsif (cuenta="01010") then
+					if notain = n10 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+					
+				elsif (cuenta="01011") then
+					if notain = n11 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+					
+				elsif (cuenta="01100") then
+					if notain = n12 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="01101") then
+					if notain = n13 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="01110") then
+					if notain = n14 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="01111") then
+					if notain = n15 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+					
+				elsif (cuenta="10000") then
+					if notain = n16 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="10001") then
+					if notain = n17 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+				
+				elsif (cuenta="10010") then
+					if notain = n18 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;
+					
+				elsif (cuenta="10011") then
+					if notain = n19 then cuenta<=cuenta+1;
+					else conteo<=conteo+1;end if;				
+			
+				end if;
+			end if;
+		end if;
+	END PROCESS;
+END sol;

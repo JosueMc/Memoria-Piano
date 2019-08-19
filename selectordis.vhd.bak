@@ -1,0 +1,31 @@
+LIBRARY IEEE;
+USE  IEEE.STD_LOGIC_1164.all;
+USE  IEEE.STD_LOGIC_UNSIGNED.all;
+
+ENTITY selectordis IS
+PORT(p: IN STD_LOGIC_VECTOR (6 downto 0);
+
+		
+		salida: out STD_LOGIC_VECTOR (3 downto 0));
+END selectordis;
+
+ARCHITECTURE sol OF selectordis IS
+		BEGIN
+	   PROCESS (p,i0,ii1,i2,i3,i4,i5,i6,i7,i8,i9,i10,i11) IS
+
+		begin 
+		CASE p IS
+
+			WHEN "0000001" => salida<="1111";
+			WHEN "0000010" => salida<="1111";
+			WHEN "0000100" => salida<="1111";
+			WHEN "0001000" => salida<="1111";
+			WHEN "0010000" => salida<="1111";
+			WHEN "0100000" => salida<="1111";
+			WHEN "1000000" => salida<="1111";
+			
+			WHEN others => uno<=inH1;dos<=inH2;tres<=inmin1; cuatro<=inmin2;
+		end case;
+		end PROCESS;
+end sol;
+				
